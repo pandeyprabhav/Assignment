@@ -1,0 +1,40 @@
+import random
+# Defining the parking levels and spaces
+parking_lot = {'A': list(range(1, 21)), 'B': list(range(21, 41))}
+occupied_spots = {}
+# Function to find a parking spot for a vehicle
+def find_parking_spot():
+ vehicle_num = input("Please enter your vehicle number: ")
+ if len(vehicle_num) > 22:
+ print("Please enter less than 22 characters.")
+ return
+ level = random.choice(['A', 'B'])
+ spot = random.choice(parking_lot[level])
+ occupied_spots[vehicle_num] = (level, spot)
+ print(f"You have been assigned parking spot {level}-{spot}.")
+ return
+# Function to find a parked vehicle
+def find_my_car():
+ vehicle_num = input("Please enter your vehicle number: ")
+ if vehicle_num in occupied_spots:
+ level, spot = occupied_spots[vehicle_num]
+ print(f"Your car is located at level '{level}' at spot '{spot}'. Thank you for parking with us!")
+ else:
+ print("You haven't parked with us. Please give us a chance.")
+ return
+# Main function to run the program
+def main():
+ while True:
+ option = input("What would you like to do? \n1. Find me a parking spot\n2. Find my car\n3. 
+Quit\n")
+ if option == '1':
+ find_parking_spot()
+ elif option == '2':
+ find_my_car()
+ elif option == '3':
+ break
+ else:
+ print("Invalid option. Please try again.")
+ print() # Adding a blank line for readability
+if __name__ == '__main__':
+ main()
